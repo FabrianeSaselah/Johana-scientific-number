@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scientific Number Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+            background-color: #89CFF0; /* Baby blue */
+            color: #1F3A93; /* Dark blue for contrast */
+        }
+        .menu {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px;
+            cursor: pointer;
+            background-color: white;
+            border: 1px solid #000;
+            border-radius: 5px;
+            color: #1F3A93; /* Matching dark blue */
+            font-weight: bold;
+        }
+        input {
+            padding: 5px;
+            width: 200px;
+            margin-bottom: 10px;
+            border: 1px solid #1F3A93;
+            color: #1F3A93;
+            font-weight: bold;
+        }
+        h2 {
+            color: #FF6F61; /* Coral for a vibrant contrast */
+        }
+        p {
+            color: #4A235A; /* Deep purple for variety */
+        }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <button onclick="handleFile()">File</button>
+        <button onclick="handleEdit()">Edit</button>
+        <button onclick="handleRun()">Run</button>
+        <button onclick="handleAbout()">About Us</button>
+    </div>
+    
+    <h2>Scientific Number Checker</h2>
+    <p>Enter a number:</p>
+    <input type="text" id="numberInput" placeholder="e.g. 1.23e+10">
+    <br>
+    <button onclick="checkNumber()">Run</button>
+    <p id="result"></p>
+
+    <script>
+        function handleFile() {
+            const fileContent = "This is a sample file content.";
+            const blob = new Blob([fileContent], { type: "text/plain" });
+            const a = document.createElement("a");
+            a.href = URL.createObjectURL(blob);
+            a.download = "sample.txt";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+        
+        function handleEdit() {
+            alert("Edit menu clicked. Implement edit-related actions here.");
+        }
+        
+        function handleRun() {
+            checkNumber();
+        }
+        
+        function handleAbout() {
+            alert("About Us: This is a simple scientific number checker.");
+        }
+
+        function checkNumber() {
+            const input = document.getElementById('numberInput').value.trim();
+            const numberPattern = /^[-+]?\d+(\.\d+)?(e[-+]?\d+)?$/i;
+            const result = document.getElementById('result');
+            
+            if (numberPattern.test(input)) {
+                result.textContent = "Valid number.";
+                result.style.color = "green";
+            } else {
+                result.textContent = "Invalid number.";
+                result.style.color = "red";
+            }
+        }
+    </script>
+</body>
+</html>
